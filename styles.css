@@ -43,9 +43,7 @@ a {
 
 .header {
   padding: 0px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  position: static;
   background: rgba(15, 16, 19, 0.84);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -53,14 +51,21 @@ a {
 
 
 .brand {
-  display: block;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .brand img {
-  position:relative;
   height: 150px;
   width: auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-links {
