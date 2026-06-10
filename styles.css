@@ -265,12 +265,11 @@ a {
   overflow-y: hidden;
   padding: 0 1.2rem;
   margin-top: 1.5rem;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   cursor: grab;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  touch-action: pan-x;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
 }
@@ -343,12 +342,11 @@ a {
   overflow-y: hidden;
   padding: 0 1.2rem;
   height: 240px;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   cursor: grab;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  touch-action: pan-x;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
 }
