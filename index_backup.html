@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -38,12 +38,12 @@
     </section>
 
     <section class="section" id="servicos">
-      <div class="container-servicos">
+      <div class="container">
         <div class="services-header">
           <h2>Serviços</h2>
           <p>Oferecemos cortes masculinos, barbas completas e tratamentos de styling para um visual impecável.</p>
         </div>
-        <div class="services-scroll">
+        <div class="grid-3">
           <article class="card">
             <h3>💈 Corte Clássico</h3>
             <p>Acabamento preciso, atenção aos detalhes e estilo autêntico para quem procura elegância tradicional.</p>
@@ -61,14 +61,7 @@
             <p>Relaxamento com massagem, finalização premium e produtos de alta qualidade para uma experiência exclusiva.</p>
           </article>
         </div>
-      </div>
-    </section>
 
-    <section class="section" id="galeria">
-      <div class="container">
-        <div class="gallery-header">
-          <h2>Galerias</h2>
-        </div>
         <div class="gallery-wrap">
           <div class="gallery-group">
             <h3>Ambiente</h3>
@@ -94,14 +87,15 @@
     <section class="section" id="localizacao">
       <div class="container">
         <h2>Localização</h2>
+        <p>Estamos no coração da cidade, com fácil acesso e estacionamento próximo para sua praticidade.</p>
         <div class="contact-card">
           <div>
             <strong>Rua Prefeito Frederico Busch, 280</strong>
-            <p>Garcia, Blumenau - SC</p>
+            <p>Vila Nova Conceição, São Paulo - SP</p>
           </div>
           <div class="contact-list">
-            <span><strong>Horário:</strong><em>Segunda a Sexta • 09h às 18h</em></span>
-            <span><strong>Horário:</strong><em>Sabado • 09h às 13h</em></span>
+            <span><strong>Horário:</strong><em>Terça a Sábado • 09h às 20h</em></span>
+            <span><strong>Contato:</strong><em>(11) 99999-9999</em></span>
           </div>
         </div>
       </div>
@@ -128,62 +122,62 @@
   </footer>
 
   <script>
-    // Suporte a drag/swipe para galeria e serviços - Mobile First
-    const scrollElements = document.querySelectorAll('.gallery-grid, .services-scroll');
+    // Suporte a drag/swipe para galeria - Mobile First
+    const galleries = document.querySelectorAll('.gallery-grid');
     
-    scrollElements.forEach(element => {
+    galleries.forEach(gallery => {
       let isDown = false;
       let startX;
       let scrollLeft;
       let startScrollLeft;
       
       // Previne comportamento padrão de toque
-      element.addEventListener('touchstart', (e) => {
+      gallery.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
-        startScrollLeft = element.scrollLeft;
+        startScrollLeft = gallery.scrollLeft;
       }, { passive: true });
       
-      element.addEventListener('touchmove', (e) => {
+      gallery.addEventListener('touchmove', (e) => {
         if (e.touches.length === 1) {
           const x = e.touches[0].clientX;
           const walk = startX - x;
-          element.scrollLeft = startScrollLeft + walk;
+          gallery.scrollLeft = startScrollLeft + walk;
         }
       }, { passive: true });
       
       // Suporte a mouse drag
-      element.addEventListener('mousedown', (e) => {
+      gallery.addEventListener('mousedown', (e) => {
         isDown = true;
-        element.classList.add('grabbing');
-        startX = e.pageX - element.offsetLeft;
-        scrollLeft = element.scrollLeft;
+        gallery.classList.add('grabbing');
+        startX = e.pageX - gallery.offsetLeft;
+        scrollLeft = gallery.scrollLeft;
       });
       
-      element.addEventListener('mouseleave', () => {
+      gallery.addEventListener('mouseleave', () => {
         isDown = false;
-        element.classList.remove('grabbing');
+        gallery.classList.remove('grabbing');
       });
       
-      element.addEventListener('mouseup', () => {
+      gallery.addEventListener('mouseup', () => {
         isDown = false;
-        element.classList.remove('grabbing');
+        gallery.classList.remove('grabbing');
       });
       
-      element.addEventListener('mousemove', (e) => {
+      gallery.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         e.preventDefault();
-        const x = e.pageX - element.offsetLeft;
+        const x = e.pageX - gallery.offsetLeft;
         const walk = (x - startX);
-        element.scrollLeft = scrollLeft - walk;
+        gallery.scrollLeft = scrollLeft - walk;
       });
     });
 
-    // Previne scroll vertical quando o dedo está em elementos scrolláveis
+    // Previne scroll vertical quando o dedo está na galeria
     document.addEventListener('touchmove', (e) => {
-      const scrollable = e.target.closest('.gallery-grid, .services-scroll');
-      if (scrollable) {
-        // Permite que os elementos façam scroll horizontal naturalmente
-        // mas previne propagação para não afetar a página
+      const gallery = e.target.closest('.gallery-grid');
+      if (gallery) {
+        // Permite que a galeria faça scroll horizontal naturalmente
+        // mas previne propagação para não afetara página
       }
     }, { passive: true });
   </script>
