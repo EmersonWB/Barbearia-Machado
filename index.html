@@ -120,5 +120,70 @@
       <p>© 2026 Barbearia Machado. Feito para clientes que valorizam estilo e conforto.</p>
     </div>
   </footer>
+
+  <script>
+    // Suporte a drag/swipe para galeria
+    const galleries = document.querySelectorAll('.gallery-grid');
+    
+    galleries.forEach(gallery => {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      
+      gallery.addEventListener('mousedown', (e) => {
+        isDown = true;
+        gallery.classList.add('grabbing');
+        startX = e.pageX - gallery.offsetLeft;
+        scrollLeft = gallery.scrollLeft;
+      });
+      
+      gallery.addEventListener('mouseleave', () => {
+        isDown = false;
+        gallery.classList.remove('grabbing');
+      });
+      
+      gallery.addEventListener('mouseup', () => {
+        isDown = false;
+        gallery.classList.remove('grabbing');
+      });
+      
+      gallery.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - gallery.offsetLeft;
+        const walk = (x - startX) * 1;
+        gallery.scrollLeft = scrollLeft - walk;
+      });
+      
+      // Suporte a touch (toque em dispositivos móveis)
+      let touchStartX = 0;
+      let touchScrollLeft = 0;
+      let isSwiping = false;
+      
+      gallery.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchScrollLeft = gallery.scrollLeft;
+        isSwiping = true;
+      }, { passive: true });
+      
+      gallery.addEventListener('touchmove', (e) => {
+        if (!isSwiping || !e.touches) return;
+        const x = e.touches[0].clientX;
+        const walk = (touchStartX - x) * 1.5;
+        gallery.scrollLeft = touchScrollLeft + walk;
+      }, { passive: true });
+      
+      gallery.addEventListener('touchend', () => {
+        isSwiping = false;
+      }, { passive: true });
+      
+      // Previne comportamento padrão de scroll vertical quando mexer na galeria
+      gallery.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    });
+  </script>
 </body>
 </html>
