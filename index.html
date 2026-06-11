@@ -58,7 +58,7 @@
           </article>
           <article class="card">
             <h3>🌟 Tratamento VIP</h3>
-            <p>Relaxamento com massagem, finalização premium e produtos de alta qualidade para uma experiência exclusiva.</p>
+            <p>Não aguarde sua vez sem fazer nada? Disponibilizamos bebidas e um video game para se distrair enquanto aguarda. </p>
           </article>
         </div>
       </div>
@@ -89,6 +89,49 @@
               <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?auto=format&fit=crop&w=900&q=80" alt="Homem recebendo acabamento final no cabelo" />
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="avaliacoes">
+      <div class="container">
+        <div class="reviews-header">
+          <h2>Avaliações</h2>
+          <p>Clientes que confiaram na Barbearia Machado e saíram com corte impecável e atendimento diferenciado.</p>
+        </div>
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-card-header">
+              <img class="review-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" alt="Foto do cliente João" />
+              <div>
+                <strong>João Pedro</strong>              
+              </div>
+            </div>
+            <div class="review-stars">★★★★★ <strong>5,0</strong></div>
+            <p>Excelente corte e ambiente muito agradável. O atendimento foi rápido e super profissional.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card-header">
+              <img class="review-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Foto do cliente Rafael" />
+              <div>
+                <strong>Rafael Santos</strong>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★ <strong>5,0</strong></div>
+            <p>Serviço impecável e acabamento perfeito. Recomendo para quem busca um corte moderno e precisão nos detalhes.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card-header">
+              <img class="review-avatar" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Foto do cliente Carlos" />
+              <div>
+                <strong>Carlos Henrique</strong>
+              </div>
+            </div>
+            <div class="review-stars">★★★★☆ <strong>4,5</strong></div>
+            <p>Ótima experiência geral, equipe atenciosa e ambiente confortável. Apenas o tempo de espera poderia ser um pouco menor.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -176,13 +219,15 @@
       element.addEventListener('mousedown', (e) => {
         isDown = true;
         element.classList.add('grabbing');
-        startX = e.pageX - element.offsetLeft;
+        startX = e.clientX;
         scrollLeft = element.scrollLeft;
       });
       
       element.addEventListener('mouseleave', () => {
-        isDown = false;
-        element.classList.remove('grabbing');
+        if (isDown) {
+          isDown = false;
+          element.classList.remove('grabbing');
+        }
       });
       
       element.addEventListener('mouseup', () => {
@@ -193,8 +238,8 @@
       element.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         e.preventDefault();
-        const x = e.pageX - element.offsetLeft;
-        const walk = (x - startX);
+        const x = e.clientX;
+        const walk = x - startX;
         element.scrollLeft = scrollLeft - walk;
       });
     });
