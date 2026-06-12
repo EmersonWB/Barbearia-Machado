@@ -73,21 +73,30 @@
           <div class="gallery-group">
             <h3>Ambiente</h3>
             <div class="gallery-grid">
-              <img src="./assets/cadeirascafé.jpeg" alt="Ambiente de espera e recepção" />
-              <img src="./assets/espelhobancada.jpeg" alt="Uma das bancadas com espelho" />
-              <img src="./assets/frigobar.jpeg" alt="Frigobar e bebedouro" />
-              <img src="./assets/outrabancada.jpeg" alt="Uma das bancadas com espelho" />
-              <img src="./assets/quadros.jpeg" alt="Decoração interna da barbearia" />
+              <img src="assets/frente.jpg" alt="Frente da barbearia" />
+              <img src="assets/Ambiente1.jpg" alt="Ambiente de espera e recepção" />
+              <img src="assets/Ambiente2.jpg" alt="Ambiente interno da barbearia" />
             </div>
+            <button class="gallery-prev" type="button" aria-label="Anterior">‹</button>
+            <button class="gallery-next" type="button" aria-label="Próximo">›</button>
           </div>
 
           <div class="gallery-group">
             <h3>Clientes</h3>
             <div class="gallery-grid">
-              <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?auto=format&fit=crop&w=900&q=80" alt="Barbeiro cortando cabelo masculino" />
-              <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=80" alt="Corte de cabelo masculino em andamento" />
-              <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?auto=format&fit=crop&w=900&q=80" alt="Homem recebendo acabamento final no cabelo" />
+              <img src="assets/cliente1.jpg" alt="Cliente com corte moderno na barbearia" />
+              <img src="assets/Cleinte2.jpg" alt="Cliente satisfeito após o corte" />
+              <img src="assets/Cleinte3.jpg" alt="Cliente aguardando atendimento" />
+              <img src="assets/Cleinte4.jpg" alt="Cliente recebendo serviço de cabelo" />
+              <img src="assets/Cliente5.jpg" alt="Cliente feliz com o novo visual" />
+              <img src="assets/Cliente6.jpg" alt="Cliente olhando o resultado do corte" />
+              <img src="assets/Cliente7.jpg" alt="Cliente pronto para sair com estilo" />
+              <img src="assets/Cliente8.jpg" alt="Cliente no ambiente moderno da barbearia" />
+              <img src="assets/Cliente9.jpg" alt="Cliente confiante com o corte" />
+              <img src="assets/Cliente10.jpg" alt="Cliente satisfeito com o acabamento" />
             </div>
+            <button class="gallery-prev" type="button" aria-label="Anterior">‹</button>
+            <button class="gallery-next" type="button" aria-label="Próximo">›</button>
           </div>
         </div>
       </div>
@@ -252,6 +261,24 @@
         // mas previne propagação para não afetar a página
       }
     }, { passive: true });
+
+    document.querySelectorAll('.gallery-group').forEach(group => {
+  const grid = group.querySelector('.gallery-grid');
+  const prev = group.querySelector('.gallery-prev');
+  const next = group.querySelector('.gallery-next');
+
+  if (!grid) return;
+
+  const scrollAmount = grid.clientWidth;
+
+  prev?.addEventListener('click', () => {
+    grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  next?.addEventListener('click', () => {
+    grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+});
   </script>
 </body>
 </html>
